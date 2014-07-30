@@ -1,0 +1,18 @@
+.row
+  .col-sm-9
+    h3
+      | 公開記事
+      span.badge*{style: 'vertical-align: 5px'} = @articles.size
+
+  .col-sm-3
+    .thumbnail
+      .text-center*{style: 'height: 130px'} = image_tag current_user.gravatar_url
+      .caption.text-center
+        p #{current_user.user_name} @#{current_user.screen_name}
+        p= current_user.user_description
+
+    p.col-xs-12
+      = link_to 'プロフィール編集', edit_home_settings_profiles_path, class: 'btn btn-default btn-block'
+
+    p.col-xs-12
+      = link_to 'アカウント編集', edit_home_settings_accounts_path, class: 'btn btn-default btn-block'

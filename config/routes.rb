@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  # resources :page_histories
+
+  # resources :pages
+
+  # resources :sites_members
+
+  # resources :sites
+
   resources :u, only: [:index, :show] do
     scope module: :u do
       resources :articles, only: [:index, :show]
@@ -9,12 +17,10 @@ Rails.application.routes.draw do
   get 'home' => 'home#show'
   namespace :home do
 
-    resources :articles do
-      member do
-        post :publish
-        post :draft
-      end
+    resources :sites do
+      resources :pages
     end
+
     resources :comments
 
     resource :withdrawals
@@ -26,11 +32,10 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users#,
-      # controllers: {
-      #     registrations: 'registrations',
-      #     # sessions: 'sessions'
-      # }
+  devise_for :users,
+      controllers: {
+          registrations: 'registrations',
+      }
 
   root 'welcome#index'
 

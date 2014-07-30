@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Page:
+  = @page_history.page
+p
+  strong Title:
+  = @page_history.title
+p
+  strong Body source:
+  = @page_history.body_source
+p
+  strong Body:
+  = @page_history.body
+
+= link_to 'Edit', edit_page_history_path(@page_history)
+'|
+= link_to 'Back', page_histories_path

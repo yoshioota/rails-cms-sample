@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Site:
+  = @page.site
+p
+  strong User:
+  = @page.user
+p
+  strong Title:
+  = @page.title
+p
+  strong Body source:
+  = @page.body_source
+p
+  strong Body:
+  = @page.body
+
+= link_to 'Edit', edit_page_path(@page)
+'|
+= link_to 'Back', pages_path

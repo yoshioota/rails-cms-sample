@@ -11,10 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726170501) do
+ActiveRecord::Schema.define(version: 20140727120237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "page_histories", force: true do |t|
+    t.integer  "page_id"
+    t.string   "title"
+    t.text     "body_source"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "page_histories", ["page_id"], name: "index_page_histories_on_page_id", using: :btree
+
+  create_table "pages", force: true do |t|
+    t.integer  "site_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body_source"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pages", ["site_id"], name: "index_pages_on_site_id", using: :btree
+  add_index "pages", ["user_id"], name: "index_pages_on_user_id", using: :btree
+
+  create_table "sites", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "aasm_state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
+
+  create_table "sites_members", force: true do |t|
+    t.integer  "site_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sites_members", ["site_id"], name: "index_sites_members_on_site_id", using: :btree
+  add_index "sites_members", ["user_id"], name: "index_sites_members_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

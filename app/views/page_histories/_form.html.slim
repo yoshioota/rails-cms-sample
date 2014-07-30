@@ -1,0 +1,21 @@
+= form_for @page_history do |f|
+  - if @page_history.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@page_history.errors.count, "error")} prohibited this page_history from being saved:"
+      ul
+        - @page_history.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :page
+    = f.text_field :page
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :body_source
+    = f.text_area :body_source
+  .field
+    = f.label :body
+    = f.text_area :body
+  .actions = f.submit 'Save'

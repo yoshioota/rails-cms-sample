@@ -1,0 +1,12 @@
+h1
+  |#{link_to @site.title, home_site_path(@site)} > #{@page.title}
+
+hr
+
+= raw @page.body
+
+hr
+
+= link_to 'Edit', edit_home_site_page_path(@site, @page)
+'|
+= link_to 'Back', home_site_pages_path(@site)

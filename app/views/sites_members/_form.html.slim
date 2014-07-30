@@ -1,0 +1,15 @@
+= form_for @sites_member do |f|
+  - if @sites_member.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@sites_member.errors.count, "error")} prohibited this sites_member from being saved:"
+      ul
+        - @sites_member.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :site
+    = f.text_field :site
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions = f.submit 'Save'

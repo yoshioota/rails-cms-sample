@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Site:
+  = @sites_member.site
+p
+  strong User:
+  = @sites_member.user
+
+= link_to 'Edit', edit_sites_member_path(@sites_member)
+'|
+= link_to 'Back', sites_members_path

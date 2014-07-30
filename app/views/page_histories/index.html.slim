@@ -1,0 +1,27 @@
+h1 Listing page_histories
+
+table
+  thead
+    tr
+      th Page
+      th Title
+      th Body source
+      th Body
+      th
+      th
+      th
+
+  tbody
+    - @page_histories.each do |page_history|
+      tr
+        td = page_history.page
+        td = page_history.title
+        td = page_history.body_source
+        td = page_history.body
+        td = link_to 'Show', page_history
+        td = link_to 'Edit', edit_page_history_path(page_history)
+        td = link_to 'Destroy', page_history, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Page history', new_page_history_path

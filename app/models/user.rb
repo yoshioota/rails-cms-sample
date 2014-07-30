@@ -16,5 +16,4 @@ class User < ActiveRecord::Base
     "http://gravatar.com/avatar/#{hash}.jpg?s=#{length}"
   end
 
-  attr_accessor :screen_name
 end

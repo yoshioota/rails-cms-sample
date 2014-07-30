@@ -71,3 +71,7 @@ group :production, :staging do
 end
 
 gem 'awesome_print'
+
+gem 'bootstrap_form'
+
+gem 'squeel'

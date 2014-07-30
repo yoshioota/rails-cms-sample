@@ -1,0 +1,23 @@
+h1 Listing sites_members
+
+table
+  thead
+    tr
+      th Site
+      th User
+      th
+      th
+      th
+
+  tbody
+    - @sites_members.each do |sites_member|
+      tr
+        td = sites_member.site
+        td = sites_member.user
+        td = link_to 'Show', sites_member
+        td = link_to 'Edit', edit_sites_member_path(sites_member)
+        td = link_to 'Destroy', sites_member, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Sites member', new_sites_member_path
