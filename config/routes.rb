@@ -22,14 +22,13 @@ Rails.application.routes.draw do
     end
 
     resources :comments
+  end
 
+  namespace :settings do
+    resource :profiles
+    resource :accounts
+    resource :passwords
     resource :withdrawals
-
-    namespace :settings do
-      resource :profiles
-      resource :accounts
-      resource :passwords
-    end
   end
 
   devise_for :users,

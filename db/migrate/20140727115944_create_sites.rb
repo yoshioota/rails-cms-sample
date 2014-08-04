@@ -5,6 +5,8 @@ class CreateSites < ActiveRecord::Migration
       t.string :title
       t.string :aasm_state
 
+      t.references :page
+
       t.timestamps
     end
   end

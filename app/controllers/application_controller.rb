@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   # http://blog.endpoint.com/2011/10/rails-controllers-and-transactions.html
   around_filter :wrap_transaction, only: [:create, :update, :destroy]
 
+  include SimpleBreadcrumbs
+
   private
 
     def wrap_transaction

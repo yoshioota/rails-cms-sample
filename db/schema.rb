@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140727120237) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "aasm_state"
+    t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
