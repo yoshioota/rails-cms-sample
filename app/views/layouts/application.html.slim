@@ -23,9 +23,9 @@ html
               li
                 = link_to '+ 新規サイト', new_home_site_path
 
-              - if @site
+              - if @site.persisted?
                 li
-                  = link_to '+ 新規ページ', new_home_site_page_path(@site)
+                  = link_to '+ 新規ページ', new_home_site_page_path(@site.id)
 
               li
                 = link_to home_path, style: 'padding-right: 10px;' do
@@ -41,6 +41,9 @@ html
             - else
               li= link_to '始める', new_user_registration_path
               li= link_to 'ログイン', new_user_session_path
+
+    .container
+      = render partial: 'shared/breadcrumbs'
 
     div*{class: content_for?(:container_class) ? yield(:container_class) : 'container'}
 

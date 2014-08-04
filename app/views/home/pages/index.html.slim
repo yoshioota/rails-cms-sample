@@ -10,20 +10,17 @@ table
       th Body
       th
       th
-      th
 
   tbody
     - @pages.each do |page|
       tr
-        td = page.site
+        td = link_to page.title, home_site_page_path(page.site, page)
         td = page.user
         td = page.title
-        td = page.body_source
         td = page.body
-        td = link_to 'Show', page
-        td = link_to 'Edit', edit_page_path(page)
-        td = link_to 'Destroy', page, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Edit', edit_home_site_page_path(page.site, page)
+        td = link_to 'Destroy', home_site_page_path(page.site, page), data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Page', new_page_path
+/= link_to 'New Page', new_home_site_page_path(page.site)

@@ -6,7 +6,8 @@ class Home::PagesController < AuthorizedController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    add_breadcrumb(@site.title, home_site_path(@site))
+    @pages = @site.pages.all
   end
 
   # GET /pages/1
@@ -16,7 +17,7 @@ class Home::PagesController < AuthorizedController
 
   # GET /pages/new
   def new
-    @page = Page.new
+    @page = @site.pages.new
   end
 
   # GET /pages/1/edit
@@ -67,6 +68,7 @@ class Home::PagesController < AuthorizedController
   end
 
   private
+
     def set_site
       @site = Site.find(params[:site_id])
     end
@@ -78,6 +80,6 @@ class Home::PagesController < AuthorizedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:site_id, :user_id, :title, :body_source, :body)
+      params.require(:page).permit(:site_id, :user_id, :title, :body_source)
     end
 end
