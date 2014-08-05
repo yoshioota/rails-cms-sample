@@ -243,6 +243,7 @@ DEPENDENCIES
   rails (= 4.1.4)
   rails-footnotes (>= 4.0.0, < 5)
   rails_12factor
+  rails_stdout_logging
   redcarpet
   rinku
   sass-rails (~> 4.0.3)

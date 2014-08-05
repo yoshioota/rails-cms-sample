@@ -1,12 +1,22 @@
-h1
-  |#{link_to @site.title, home_site_path(@site)} > #{@page.title}
+.col-xs-12.col-sm-10
+  h1
+    = @page.title
 
-hr
+  hr
 
-= raw @page.body
+  = raw @page.body
 
-hr
+.col-xs-12.col-sm-2
+  div
+    p= link_to 'Edit', edit_home_site_page_path(@site, @page), class: 'btn btn-default btn-block'
 
-= link_to 'Edit', edit_home_site_page_path(@site, @page)
-'|
-= link_to 'Back', home_site_pages_path(@site)
+  div
+    p 最近更新したページ
+    - @site.pages.updated_at_desc.each do |page|
+      div
+        = link_to page.title, home_site_page_path(@site, page)
+
+  div
+    p メンバー一覧
+    - @site.pages.updated_at_desc.each do |page|
+      div= link_to page.title, home_site_page_path(@site, page)

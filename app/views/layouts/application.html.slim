@@ -23,7 +23,7 @@ html
               li
                 = link_to '+ 新規サイト', new_home_site_path
 
-              - if @site.persisted?
+              - if @site.try(:persisted?)
                 li
                   = link_to '+ 新規ページ', new_home_site_page_path(@site.id)
 

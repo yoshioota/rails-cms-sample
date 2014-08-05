@@ -1,18 +1,16 @@
-= form_for [:home, @site, @page] do |f|
+= form_for [:home, @site, @page], html: {class: 'form-horizontal'}, role: 'form' do |f|
 
-  - if @page.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@page.errors.count, "error")} prohibited this page from being saved:"
-      ul
-        - @page.errors.full_messages.each do |message|
-          li = message
+  .form-group
+    = f.label :title, class: 'col-sm-2 control-label'
 
-  .field
-    = f.label :title
-    = f.text_field :title
+    .col-sm-10
+      = f.text_field :title, autofocus: true, class: 'form-control'
 
-  .field
-    = f.label :body_source
-    = f.text_area :body_source
+  .form-group
+    = f.label :body_source, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_area :body_source, class: 'form-control'
 
-  .actions = f.submit 'Save'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+       = f.submit 'Save', class: 'btn btn-primary'

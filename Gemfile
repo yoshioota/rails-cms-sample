@@ -75,3 +75,5 @@ gem 'awesome_print'
 gem 'bootstrap_form'
 
 gem 'squeel'
+
+gem 'rails_stdout_logging'
