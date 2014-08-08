@@ -6,4 +6,4 @@ p 最近更新したページ
 div
   p メンバー一覧
   - @site.members.each do |user|
-    div= link_to user.user_id, '#'
+    div= link_to user.screen_name, u_path(user.screen_name)

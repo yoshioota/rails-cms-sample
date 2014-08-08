@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise \
@@ -8,6 +9,8 @@ class User < ActiveRecord::Base
       :rememberable,
       :trackable,
       :validatable
+
+  has_many :sites
 
   def gravatar_url(*args)
     options = args.extract_options!

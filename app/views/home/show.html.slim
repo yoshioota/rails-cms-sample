@@ -1,8 +1,13 @@
 .row
   .col-sm-9
-    h3
-      | 公開記事
-      span.badge*{style: 'vertical-align: 5px'} = @articles.size
+    div
+      h3
+        | サイト
+        span.badge*{style: 'vertical-align: 5px'} = @sites.size
+
+    - @sites.each do |site|
+      div
+        = link_to site.page.title, home_site_path(site)
 
   .col-sm-3
     .thumbnail

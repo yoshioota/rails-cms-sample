@@ -18,7 +18,15 @@ Rails.application.routes.draw do
   namespace :home do
 
     resources :sites do
-      resources :pages
+      collection do
+        get :create_preview
+      end
+      member do
+        get :preview
+      end
+
+      resources :pages do
+      end
     end
 
     resources :comments

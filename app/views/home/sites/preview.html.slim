@@ -1,0 +1,14 @@
+h1
+  = @site.page.title
+
+div
+  = raw @site.page.body
+
+= bootstrap_form_for(do_preview_) do |f|
+  = f.fields_for :page, @site.page do |page_form|
+    = page_form.hidden_field :title
+    = page_form.hidden_field :body_source
+
+  .actions
+    = f.button 'Back', name: 'preview', class: 'btn btn-default'
+    = f.submit 'Save'

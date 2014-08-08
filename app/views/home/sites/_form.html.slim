@@ -1,4 +1,4 @@
-= bootstrap_form_for [:home, @site] do |f|
+= bootstrap_form_for(*options) do |f|
 
   - if @site.errors.any?
     #error_explanation
@@ -9,7 +9,8 @@
 
   = f.fields_for :page, (@site.page || @site.build_page) do |page_form|
     = page_form.text_field :title, autofocus: true
-    = page_form.text_area :body_source
+    = page_form.text_area :body_source, rows: 30
 
   .actions
+    = f.button 'Preview', name: 'preview', class: 'btn btn-default'
     = f.submit 'Save'

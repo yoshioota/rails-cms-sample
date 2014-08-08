@@ -1,7 +1,7 @@
 class HomeController < AuthorizedController
 
   def show
-    @articles = [] #current_user.articles
+    @sites = current_user.sites
     @comments = [] #current_user.comments.includes(:article => :user)
   end
 end
