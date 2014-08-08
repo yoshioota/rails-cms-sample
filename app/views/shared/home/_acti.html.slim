@@ -1,0 +1,9 @@
+p 最近更新したページ
+- @site.pages.updated_at_desc.each do |page|
+  div
+    = link_to page.title, home_site_page_path(@site, page)
+
+div
+  p メンバー一覧
+  - @site.members.each do |user|
+    div= link_to user.user_id, '#'

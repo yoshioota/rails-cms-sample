@@ -2,6 +2,10 @@ class Home::SitesController < AuthorizedController
 
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
+  before_action do
+    add_breadcrumb_home
+  end
+
   # GET /sites
   # GET /sites.json
   def index
@@ -15,6 +19,9 @@ class Home::SitesController < AuthorizedController
 
   # GET /sites/new
   def new
+    add_breadcrumb 'Site 一覧', home_sites_path
+    add_breadcrumb '新規 Site'
+
     @site = Site.new
   end
 
@@ -42,8 +49,11 @@ class Home::SitesController < AuthorizedController
   # PATCH/PUT /sites/1.json
   def update
     respond_to do |format|
-      if @site.update(site_params)
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
+      @site.attributes = site_params
+      if @site.valid?
+        @site.page.compile_body
+        @site.save!
+        format.html { redirect_to({action: :show, id: @site}, notice: 'Site was successfully updated.') }
         format.json { render :show, status: :ok, location: @site }
       else
         format.html { render :edit }
@@ -71,6 +81,6 @@ class Home::SitesController < AuthorizedController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:title)
+      params.require(:site).permit(:title, page_attributes: [:title, :body_source])
     end
 end

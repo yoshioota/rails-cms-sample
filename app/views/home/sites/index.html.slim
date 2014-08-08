@@ -1,25 +1,7 @@
-h1 Listing sites
+p あなたのサイト一覧
 
-table
-  thead
-    tr
-      th User
-      th Title
-      th Aasm state
-      th
-      th
-      th
-
-  tbody
-    - @sites.each do |site|
-      tr
-        td = site.user
-        td = site.title
-        td = site.aasm_state
-        td = link_to 'Show', site
-        td = link_to 'Edit', edit_site_path(site)
-        td = link_to 'Destroy', site, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Site', new_site_path
+- @sites.each do |site|
+  div
+    div = link_to site.title, home_site_path(site)
+    div = site.page.try(:body)
+    div = site.updated_at.to_s

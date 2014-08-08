@@ -5,6 +5,8 @@ class Site < ActiveRecord::Base
   belongs_to :page
 
   has_many :pages
-  has_many :site_members
-  has_many :members, through: :site_members
+  has_many :sites_members
+  has_many :members, through: :sites_members
+
+  accepts_nested_attributes_for :page
 end
