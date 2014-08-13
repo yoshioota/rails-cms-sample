@@ -15,6 +15,7 @@ class Home::SitesController < AuthorizedController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    add_breadcrumb @site.page.title
   end
 
   # GET /sites/new
@@ -41,42 +42,38 @@ class Home::SitesController < AuthorizedController
       render(action: :new) and return
     end
 
-    respond_to do |format|
+    @site.page.compile_body
 
-      @site.page.compile_body
+    if @site.valid?
+      @site.save!
+      @site.members << current_user
 
-      if @site.valid?
-        @site.save!
-        @site.members << current_user
-
-        format.html { redirect_to [:home, @site], notice: 'Site was successfully created.' }
-        format.json { render :show, status: :created, location: @site }
-      else
-        format.html { render :new }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
-      end
+      redirect_to [:home, @site], notice: 'Site was successfully created.'
+    else
+      render :new
     end
   end
 
   def create_preview
-
   end
 
   # PATCH/PUT /sites/1
   # PATCH/PUT /sites/1.json
   def update
-    respond_to do |format|
-      @site.attributes = site_params
-      @site.page.compile_body
+    @site.attributes = site_params
+    @site.page.compile_body
 
-      if @site.valid?
-        @site.save!
-        format.html { redirect_to({action: :show, id: @site}, notice: 'Site was successfully updated.') }
-        format.json { render :show, status: :ok, location: @site }
-      else
-        format.html { render :edit }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
-      end
+    if params[:preview]
+      render(action: :update_preview) and return
+    elsif params[:back]
+      render(action: :new) and return
+    end
+
+    if @site.valid?
+      @site.save!
+      redirect_to({action: :show, id: @site}, notice: 'Site was successfully updated.')
+    else
+      render :edit
     end
   end
 

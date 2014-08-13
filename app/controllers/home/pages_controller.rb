@@ -13,12 +13,16 @@ class Home::PagesController < AuthorizedController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    add_breadcrumb(@site.title, home_site_path(@site))
+    add_breadcrumb_home
+    add_breadcrumb(@site.page.title, home_site_path(@site))
     add_breadcrumb(@page.title)
   end
 
   # GET /pages/new
   def new
+    add_breadcrumb_home
+    add_breadcrumb @site.page.title, home_site_path(@site)
+    add_breadcrumb '新規ページ'
     @page = @site.pages.new
   end
 

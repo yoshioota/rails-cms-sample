@@ -5,6 +5,8 @@ class MyRenderer < Redcarpet::Render::HTML
   end
 
   def postprocess(full_document)
-    Rinku.auto_link(full_document, mode = :all, link_attr = 'target="_blank"', skip_tags = nil)
+    html = Rinku.auto_link(full_document, mode = :all, link_attr = 'target="_blank"', skip_tags = nil)
+    html = html.gsub(/\[site:(.+)[^\\]\]/){|html| %Q|<a href="#{$1}">#{$1}</a>|}
+    html
   end
 end

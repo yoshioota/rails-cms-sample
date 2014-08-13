@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
       member do
         get :preview
+        get :update_preview
       end
 
       resources :pages do
